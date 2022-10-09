@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.CallableStatement;
-import java.sql.Driver;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class sqlConnect {
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String dburl = "jdbc:sqlserver://localhost:1111;database=QLQuanBida";
+    private static String dburl = "jdbc:sqlserver://localhost:1111;database=QuanLyQuanBilliards";
     private static String username = "sa";
     private static String password = "login";
 

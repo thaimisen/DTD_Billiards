@@ -5,23 +5,9 @@
 package GUI;
 
 import BLL.BLLOrder;
-import java.awt.Button;
+
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.DefaultCellEditor;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+
 
 /**
  *
@@ -37,10 +23,10 @@ public class Order extends javax.swing.JPanel {
         setBackground(Color.white);
         BLLOrder.loadButton(tblSPDaGoi);
         btnLuu.setEnabled(false);
-        BLLOrder.loadBan(jpnBan);
+        loadBan();
         BLLOrder.loadTableSanPham(tblSanPham);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +59,7 @@ public class Order extends javax.swing.JPanel {
         jPanel11 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jscpBan = new javax.swing.JScrollPane();
         jpnBan = new javax.swing.JPanel();
 
         jMenuItem7.setText("Cập nhật");
@@ -199,7 +186,7 @@ public class Order extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -244,9 +231,8 @@ public class Order extends javax.swing.JPanel {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane4)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -264,10 +250,10 @@ public class Order extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +278,7 @@ public class Order extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,22 +296,25 @@ public class Order extends javax.swing.JPanel {
         jpnBan.setLayout(jpnBanLayout);
         jpnBanLayout.setHorizontalGroup(
             jpnBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 615, Short.MAX_VALUE)
         );
         jpnBanLayout.setVerticalGroup(
             jpnBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 659, Short.MAX_VALUE)
         );
+
+        jscpBan.setViewportView(jpnBan);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jscpBan, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -334,7 +323,7 @@ public class Order extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jscpBan)
                 .addContainerGap())
         );
 
@@ -347,23 +336,26 @@ public class Order extends javax.swing.JPanel {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void loadBan(){
+        BLLOrder.loadBan(jpnBan,jscpBan);
+    }
     private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         // TODO add your handling code here:
         int indexRow = tblSPDaGoi.getSelectedRow();
         int indexColumn = tblSPDaGoi.getSelectedColumn();
         int value = Integer.parseInt(tblSPDaGoi.getValueAt(indexRow, 2).toString());
-        System.out.println(indexRow+ "row");
         if(indexColumn == 1){
             if(value == 0){
             return;
@@ -377,7 +369,6 @@ public class Order extends javax.swing.JPanel {
             btnLuu.setEnabled(true);
             return;
         }if(indexColumn == 5){
-            System.out.println("Xoá "+indexRow);
             BLLOrder.xoaRow(tblSPDaGoi, indexRow);
             return;
         }
@@ -399,125 +390,15 @@ public class Order extends javax.swing.JPanel {
 
     private void tblSPDaGoiPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblSPDaGoiPropertyChange
         // TODO add your handling code here:
-        System.out.println("oke");
+ 
     }//GEN-LAST:event_tblSPDaGoiPropertyChange
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         // TODO add your handling code here:
-        int indexRow = tblSPDaGoi.getRowCount();
-        System.out.println(indexRow);
+
         
     }//GEN-LAST:event_jButton25ActionPerformed
-//    public void loadImgTable() {
-//        DefaultTableModel model = (DefaultTableModel) tblSPDaGoi.getModel();
-//        
-//        tblSPDaGoi.getColumnModel().getColumn(1).setCellRenderer(new ButtonRender());
-//        tblSPDaGoi.getColumnModel().getColumn(1).setCellEditor(new ButtonEditor(new JTextField()));
-//        model.setValueAt(addIcon, 0, 0);
-//    }
 
-    public void loadButton() {
-        ButtonRender btnRender = new ButtonRender();
-        btnRender.setBackground(Color.white);
-        JTextField field = new JTextField();
-        field.setBackground(Color.white);
-        ButtonEditor btnEditor = new ButtonEditor(field);
-        btnEditor.setClickCountToStart(1);
-        tblSPDaGoi.getColumnModel().getColumn(1).setCellRenderer(btnRender);
-        tblSPDaGoi.getColumnModel().getColumn(1).setCellEditor(btnEditor);
-
-    }
-
-    private class ButtonRender extends JButton implements TableCellRenderer {
-
-        public ButtonRender() {
-            
-
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            setOpaque(true);
-            setFocusPainted(false);
-            setBorderPainted(false);
-            setBackground(Color.white);
-            setIcon(addIcon);
-            return this;
-        }
-    }
-
-    // button editor class
-    private class ButtonEditor extends DefaultCellEditor {
-
-        protected JButton btn;
-        private boolean clicked;
-
-        public ButtonEditor(JTextField textField) {
-            super(textField);
-            btn = new JButton();
-
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
-
-                }
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-
-            btn.setIcon(addIcon);
-            btn.setBorder(null);
-            btn.setBorderPainted(false);
-            btn.setFocusPainted(false);
-            btn.setBackground(Color.white);
-            clicked = true;
-
-            return btn;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            if (clicked) {
-                JOptionPane.showMessageDialog(null, "");
-            }
-            clicked = false;
-            ImageIcon imageIcon = new ImageIcon(
-                    new ImageIcon("D:\\DuAnMau\\DA_Billiards\\src\\main\\java\\IMG\\icons8-plus-16.png").getImage()
-                            .getScaledInstance(20, 20, Image.SCALE_DEFAULT)
-            );
-            return new ImageIcon(imageIcon.getImage());
-        }
-
-        @Override
-        public boolean stopCellEditing() {
-            clicked = false;
-            return super.stopCellEditing();
-        }
-
-        @Override
-        protected void fireEditingStopped() {
-            super.fireEditingStopped();
-        }
-
-    }
-
-//    private class ImageRender extends DefaultTableCellRenderer {
-//
-//        @Override
-//        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//            ImageIcon imageIcon = new ImageIcon(
-//                    new ImageIcon("src\\main\\java\\IMG\\icons8-minus-16.png").getImage()
-//                            .getScaledInstance(20, 20, Image.SCALE_DEFAULT)
-//            );
-//            return new JLabel(imageIcon);
-//        }
-//
-//    }
-//
-    Icon addIcon = new ImageIcon("D:\\DuAnMau\\DA_Billiards\\src\\main\\java\\IMG\\icons8-plus-16.png");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnMenu;
@@ -540,6 +421,7 @@ public class Order extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpnBan;
     private javax.swing.JPanel jpnButton;
+    private javax.swing.JScrollPane jscpBan;
     private javax.swing.JPopupMenu ppmenu;
     private javax.swing.JTable tblSPDaGoi;
     private javax.swing.JTable tblSanPham;

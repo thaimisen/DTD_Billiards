@@ -4,10 +4,11 @@
  */
 package GUI;
 
+import EXTENDED.sqlConnect;
 import GUI.QLBan.pnlQLBan;
 import GUI.QLKhachHang.pnlKhachHang;
 import java.awt.Color;
-
+import javax.swing.JButton;
 import javax.swing.JRootPane;
 
 /**
@@ -17,13 +18,14 @@ import javax.swing.JRootPane;
 public class HomeScreen extends javax.swing.JFrame {
 
     public HomeScreen() {
+        sqlConnect.openConnection();
         setUndecorated(true);
-         initComponents();
-        
+        initComponents();
+        pnlDMcon.setVisible(false);
 //        this.setExtendedState(HomeScreen.MAXIMIZED_BOTH);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         getContentPane().setBackground(Color.white);
-       
+
         setSize(1520, 760);
         setLocationRelativeTo(null);
 
@@ -38,6 +40,45 @@ public class HomeScreen extends javax.swing.JFrame {
         jButton6.setBackground(null);
         jButton7.setBackground(null);
         btnlogout.setBackground(null);
+    }
+
+    public void backgroundColorConDM() {
+        jButton8.setBackground(null);
+        jButton9.setBackground(null);
+        jButton10.setBackground(null);
+
+    }
+
+    public void changecolormoved(JButton btn) {
+        if (!btn.getBackground().equals(new Color(63, 213, 192))) {
+            btn.setBackground(new Color(1, 177, 189));
+        }
+    }
+
+    public void changecolorexit(JButton btn) {
+        if (!btn.getBackground().equals(new Color(63, 213, 192))) {
+            btn.setBackground(color);
+        }
+    }
+
+    public void changecolorexitcon(JButton btn) {
+        if (!btn.getBackground().equals(new Color(114, 255, 255))) {
+            btn.setBackground(new Color(240, 240, 240));
+        }
+    }
+
+    public void changecolormovedcon(JButton btn) {
+        if (!btn.getBackground().equals(new Color(114, 255, 255))) {
+            btn.setBackground(new Color(11, 255, 255));
+        }
+    }
+
+    public void andanhmuccon() {
+        if (flag) {
+            flag = false;
+            pnlDMcon.setVisible(false);
+            backgroundColorConDM();
+        }
     }
 
     Color color = new Color(204, 204, 204);
@@ -56,15 +97,20 @@ public class HomeScreen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        pnlDMcon = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         lbactor = new javax.swing.JLabel();
         btnlogout = new javax.swing.JButton();
         pnltongquan = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setSize(new java.awt.Dimension(0, 0));
 
         lbminimize.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
@@ -122,7 +168,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         pnlmenu.setBackground(new java.awt.Color(204, 204, 204));
-        pnlmenu.setLayout(new java.awt.GridLayout(10, 0));
+        pnlmenu.setLayout(new java.awt.GridLayout(8, 0));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -221,29 +267,6 @@ public class HomeScreen extends javax.swing.JFrame {
         });
         pnlmenu.add(jButton4);
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/category.png"))); // NOI18N
-        jButton5.setText("   DANH MỤC");
-        jButton5.setBorderPainted(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jButton5MouseMoved(evt);
-            }
-        });
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
-            }
-        });
-        pnlmenu.add(jButton5);
-
         jButton6.setBackground(new java.awt.Color(204, 204, 204));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(51, 51, 51));
@@ -289,14 +312,98 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
         pnlmenu.add(jButton7);
-        pnlmenu.add(jLabel3);
 
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(51, 51, 51));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/category.png"))); // NOI18N
+        jButton5.setText("   DANH MỤC");
+        jButton5.setBorderPainted(false);
+        jButton5.setFocusPainted(false);
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton5MouseMoved(evt);
+            }
+        });
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
+        pnlmenu.add(jButton5);
+
+        pnlDMcon.setLayout(new java.awt.GridLayout(3, 0, 0, 1));
+
+        jButton8.setText("jButton8");
+        jButton8.setBorderPainted(false);
+        jButton8.setFocusPainted(false);
+        jButton8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton8MouseMoved(evt);
+            }
+        });
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+        });
+        pnlDMcon.add(jButton8);
+
+        jButton9.setText("jButton9");
+        jButton9.setBorderPainted(false);
+        jButton9.setFocusPainted(false);
+        jButton9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton9MouseMoved(evt);
+            }
+        });
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton9MouseExited(evt);
+            }
+        });
+        pnlDMcon.add(jButton9);
+
+        jButton10.setText("jButton10");
+        jButton10.setBorderPainted(false);
+        jButton10.setFocusPainted(false);
+        jButton10.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton10MouseMoved(evt);
+            }
+        });
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton10MouseExited(evt);
+            }
+        });
+        pnlDMcon.add(jButton10);
+
+        pnlmenu.add(pnlDMcon);
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 0));
+
+        lbactor.setBackground(new java.awt.Color(204, 204, 204));
         lbactor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbactor.setForeground(new java.awt.Color(51, 51, 51));
         lbactor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbactor.setText("ADMINISTRATOR");
         lbactor.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        pnlmenu.add(lbactor);
+        jPanel3.add(lbactor);
 
         btnlogout.setBackground(new java.awt.Color(204, 204, 204));
         btnlogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -319,19 +426,22 @@ public class HomeScreen extends javax.swing.JFrame {
                 btnlogoutMouseExited(evt);
             }
         });
-        pnlmenu.add(btnlogout);
+        jPanel3.add(btnlogout);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(pnlmenu, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pnltongquan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -366,6 +476,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton1.setBackground(new Color(63, 213, 192));
         Tongquan tongquan = new Tongquan();
         pnltongquan.add(tongquan);
@@ -374,6 +485,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton2.setBackground(new Color(63, 213, 192));
         pnltongquan.removeAll();
         pnlQLBan pnlban = new pnlQLBan();
@@ -384,6 +496,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton3.setBackground(new Color(63, 213, 192));
         pnltongquan.removeAll();
         Order order = new Order();
@@ -394,28 +507,40 @@ public class HomeScreen extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton4.setBackground(new Color(63, 213, 192));
         pnltongquan.removeAll();
         pnlKhachHang khachhang = new pnlKhachHang();
         pnltongquan.add(khachhang);
         pnltongquan.validate();
     }//GEN-LAST:event_jButton4MouseClicked
-
+    boolean flag = false;
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
+        if (!flag) {
+            pnlDMcon.setVisible(true);
+            flag = true;
+        } else {
+            flag = false;
+            pnlDMcon.setVisible(false);
+            backgroundColorConDM();
+        }
         backgroundColor();
         jButton5.setBackground(new Color(63, 213, 192));
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton6.setBackground(new Color(63, 213, 192));
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
         backgroundColor();
+        andanhmuccon();
         jButton7.setBackground(new Color(63, 213, 192));
     }//GEN-LAST:event_jButton7MouseClicked
 
@@ -434,9 +559,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void jButton3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseMoved
         // TODO add your handling code here:
-        if (!jButton3.getBackground().equals(new Color(63, 213, 192))) {
-            jButton3.setBackground(new Color(1, 177, 189));
-        }
+        changecolormoved(jButton3);
     }//GEN-LAST:event_jButton3MouseMoved
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
@@ -448,86 +571,63 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
         // TODO add your handling code here:
-        if (!jButton1.getBackground().equals(new Color(63, 213, 192))) {
-            jButton1.setBackground(new Color(1, 177, 189));
-        }
+        changecolormoved(jButton1);
     }//GEN-LAST:event_jButton1MouseMoved
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
         // TODO add your handling code here:
-        if (!jButton1.getBackground().equals(new Color(63, 213, 192))) {
-            jButton1.setBackground(color);
-        }
+        changecolorexit(jButton1);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseMoved
         // TODO add your handling code here:
-        if (!jButton2.getBackground().equals(new Color(63, 213, 192))) {
-            jButton2.setBackground(new Color(1, 177, 189));
-        }
+        changecolormoved(jButton2);
     }//GEN-LAST:event_jButton2MouseMoved
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
         // TODO add your handling code here:
-        if (!jButton2.getBackground().equals(new Color(63, 213, 192))) {
-            jButton2.setBackground(color);
-        }
+        changecolorexit(jButton2);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseMoved
         // TODO add your handling code here:
-        if (!jButton4.getBackground().equals(new Color(63, 213, 192))) {
-            jButton4.setBackground(new Color(1, 177, 189));
-        }
+        changecolormoved(jButton4);
     }//GEN-LAST:event_jButton4MouseMoved
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
         // TODO add your handling code here:
-        if (!jButton4.getBackground().equals(new Color(63, 213, 192))) {
-            jButton4.setBackground(color);
-        }
+        changecolorexit(jButton4);
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton5MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseMoved
         // TODO add your handling code here:
-        if (!jButton5.getBackground().equals(new Color(63, 213, 192))) {
-            jButton5.setBackground(new Color(1, 177, 189));
-        }
+        changecolormoved(jButton5);
     }//GEN-LAST:event_jButton5MouseMoved
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
         // TODO add your handling code here:
-        if (!jButton5.getBackground().equals(new Color(63, 213, 192))) {
-            jButton5.setBackground(color);
-        }
+        changecolorexit(jButton5);
+
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton6MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseMoved
-        // TODO add your handling code here:
-        if (!jButton6.getBackground().equals(new Color(63, 213, 192))) {
-            jButton6.setBackground(new Color(1, 177, 189));
-        }
+
+        changecolormoved(jButton6);
     }//GEN-LAST:event_jButton6MouseMoved
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        // TODO add your handling code here:
-        if (!jButton6.getBackground().equals(new Color(63, 213, 192))) {
-            jButton6.setBackground(color);
-        }
+
+        changecolorexit(jButton6);
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton7MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseMoved
-        // TODO add your handling code here:
-        if (!jButton7.getBackground().equals(new Color(63, 213, 192))) {
-            jButton7.setBackground(new Color(1, 177, 189));
-        }
+
+        changecolormoved(jButton7);
     }//GEN-LAST:event_jButton7MouseMoved
 
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        // TODO add your handling code here:
-        if (!jButton7.getBackground().equals(new Color(63, 213, 192))) {
-            jButton7.setBackground(color);
-        }
+
+        changecolorexit(jButton7);
     }//GEN-LAST:event_jButton7MouseExited
 
     private void btnlogoutMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMouseMoved
@@ -561,6 +661,46 @@ public class HomeScreen extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_lbexitMouseClicked
 
+    private void jButton8MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseMoved
+        changecolormovedcon(jButton8);
+    }//GEN-LAST:event_jButton8MouseMoved
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        changecolorexitcon(jButton8);
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton9MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseMoved
+        changecolormovedcon(jButton9);
+    }//GEN-LAST:event_jButton9MouseMoved
+
+    private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
+        // TODO add your handling code here:
+        changecolorexitcon(jButton9);
+    }//GEN-LAST:event_jButton9MouseExited
+
+    private void jButton10MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseMoved
+        changecolormovedcon(jButton10);
+    }//GEN-LAST:event_jButton10MouseMoved
+
+    private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
+        changecolorexitcon(jButton10);
+    }//GEN-LAST:event_jButton10MouseExited
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        backgroundColorConDM();
+        jButton8.setBackground(new Color(114, 255, 255));
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        backgroundColorConDM();
+        jButton9.setBackground(new Color(114, 255, 255));
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        backgroundColorConDM();
+        jButton10.setBackground(new Color(114, 255, 255));
+    }//GEN-LAST:event_jButton10MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -592,7 +732,7 @@ public class HomeScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HomeScreen().setVisible(true);
-                
+
             }
         });
     }
@@ -600,20 +740,24 @@ public class HomeScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbactor;
     private javax.swing.JLabel lbexit;
     private javax.swing.JButton lbminimize;
+    private javax.swing.JPanel pnlDMcon;
     private javax.swing.JPanel pnlmenu;
-    private javax.swing.JPanel pnltongquan;
+    public javax.swing.JPanel pnltongquan;
     // End of variables declaration//GEN-END:variables
 }

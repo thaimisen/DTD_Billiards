@@ -4,7 +4,9 @@
  */
 package GUI.QLKhachHang;
 
+import DTO.KhachHang;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +20,12 @@ public class pnlKhachHang extends javax.swing.JPanel {
     public pnlKhachHang() {
         initComponents();
         setBackground(Color.white);
+        loadTable();
     }
-
+        public void loadTable(){
+        ArrayList<KhachHang> arrTable = BLL.BLLKhachHang.listTables();
+        BLL.BLLKhachHang.DoVaoTable(arrTable,tblKH);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +55,7 @@ public class pnlKhachHang extends javax.swing.JPanel {
         jPanel11 = new javax.swing.JPanel();
         pnlkhach = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblKH = new javax.swing.JTable();
 
         pnlMenu.setLayout(new java.awt.GridLayout(1, 3));
 
@@ -217,7 +223,7 @@ public class pnlKhachHang extends javax.swing.JPanel {
 
         pnltextfield.add(jPanel11);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -228,7 +234,7 @@ public class pnlKhachHang extends javax.swing.JPanel {
                 "STT", "Tên", "Số điện thoại", "Loại khách hàng"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblKH);
 
         javax.swing.GroupLayout pnlkhachLayout = new javax.swing.GroupLayout(pnlkhach);
         pnlkhach.setLayout(pnlkhachLayout);
@@ -290,10 +296,10 @@ public class pnlKhachHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlkhach;
     private javax.swing.JPanel pnltextfield;
+    private javax.swing.JTable tblKH;
     // End of variables declaration//GEN-END:variables
 }

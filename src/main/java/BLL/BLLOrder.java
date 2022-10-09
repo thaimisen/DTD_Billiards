@@ -6,36 +6,26 @@ package BLL;
 
 import EXTENDED.Render;
 import EXTENDED.RenderLable;
-import java.awt.BorderLayout;
+import GUI.ChiTietBan;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.DefaultCellEditor;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.Renderer;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -43,7 +33,7 @@ import javax.swing.table.TableColumnModel;
  */
 public class BLLOrder {
 
-    // load table 
+    // load table chi tiết sản phẩm
     public static void loadButton(JTable table) {
         Icon addIcon = new ImageIcon("D:\\DuAnMau\\DA_Billiards\\src\\main\\java\\IMG\\icons8-plus-16.png");
         Icon truIcon = new ImageIcon("D:\\DuAnMau\\DA_Billiards\\src\\main\\java\\IMG\\icons8-minus-16.png");
@@ -62,7 +52,13 @@ public class BLLOrder {
         btnThem.setFocusable(false);
         btnThem.setBorder(null);
         btnThem.setBorderPainted(false);
-
+        btnThem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+            
         btnTru.setOpaque(true);
         btnTru.setIcon(truIcon);
         btnTru.setBackground(Color.white);
@@ -86,13 +82,12 @@ public class BLLOrder {
             }
         };
         model.setColumnIdentifiers(new Object[]{
-            "Ten", " ", "So luong", " ", "Gia", " "
+            "Ten", "", "So luong", "", "Gia", ""
         });
         model.addRow(new Object[]{
-            "pessi", btnTru, "1", btnThem, "10000", btnXoa
+            "pepsi", btnTru, "1", btnThem, "10000", btnXoa
         });
         table.setModel(model);
-
         table.getColumnModel().getColumn(0).setPreferredWidth(120);
         table.getColumnModel().getColumn(1).setPreferredWidth(10);
         table.getColumnModel().getColumn(2).setPreferredWidth(60);
@@ -138,45 +133,56 @@ public class BLLOrder {
         model.removeRow(indexRow);
     }
 
-    public static boolean changeValue() {
+    public static String tenban = "";
 
-        return false;
-    }
-
-    public static void loadBan(JPanel jPanel) {
+    // load bàn
+    public static void loadBan(JPanel jPanel, JScrollPane jScrollPane) {
         GridLayout gridLayout = new GridLayout(5, 5);
-        GridBagLayout Layout = new GridBagLayout();
-
-        ImageIcon icon = new ImageIcon("D:\\DuAnMau\\DA_Billiards\\src\\main\\java\\IMG\\icons8-pool-table-96.png");
+//        jScrollPane.add(jPanel);
+        ImageIcon icon = new ImageIcon("D:\\Kì 4\\java\\DA_Billiards\\src\\main\\java\\IMG\\icons8-pool-table-96.png");
         for (int i = 0; i < 10; i++) {
             JButton button = new JButton();
             button.setFocusPainted(false);
             button.setBackground(new Color(63, 213, 192));
             button.setBorderPainted(false);
-            for (int j = 1; j < 10; j++) {
-                JLabel jLabel = new JLabel("", SwingConstants.CENTER);
-                jLabel.setVerticalTextPosition(JLabel.BOTTOM);
-                jLabel.setHorizontalTextPosition(JLabel.CENTER);
-                jLabel.setText("");
-                if (j == 2) {
-                    jLabel.setText("Bàn " + (i + 1));
-                }
-                button.add(jLabel);
-            }
+            button.setText("Bàn " + (i + 1));
+            button.setIcon(icon);
+            button.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            button.setForeground(Color.white);
+            String ten = button.getText();
 
-            button.addActionListener(new ActionListener() {
+            button.addMouseListener(new MouseListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void mouseClicked(MouseEvent e) {
 
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    int countClick = e.getClickCount();
+                    if (countClick == 2) {
+                        tenban = ten;
+                        ChiTietBan ban = new ChiTietBan(null, true);
+                        ban.setVisible(true);
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
                 }
             });
-            GridLayout gridLayoutforbutton = new GridLayout(3, 3);
-            gridLayoutforbutton.setVgap(10);
-            button.setLayout(gridLayoutforbutton);
+
             button.setHorizontalTextPosition(JButton.CENTER);
             button.setVerticalTextPosition(JButton.BOTTOM);
 
-            button.setIcon(icon);
             jPanel.add(button);
             jPanel.setLayout(gridLayout);
             gridLayout.setVgap(5);
@@ -185,8 +191,8 @@ public class BLLOrder {
         }
     }
 
-    public static void showdeltailBan(String ban) {
-        JOptionPane.showMessageDialog(null, ban);
+    public static void showdeltailBan(JDialog dialog, String tenBan1) {
+        dialog.setVisible(true);
     }
 
     // load table sản phẩm
@@ -213,7 +219,7 @@ public class BLLOrder {
             "Ten", "Gia", "", ""
         });
         model.addRow(new Object[]{
-            "pessi", "10000", "", btnThem
+            "pepsi", "10000", "", btnThem
         });
         table.setModel(model);
         table.getColumnModel().getColumn(2).setCellRenderer(new RenderLable());
@@ -230,5 +236,23 @@ public class BLLOrder {
         table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 
         table.setShowGrid(false);
+    }
+
+    public static void loadChiTietBan(JTable table, JLabel tenBan, JLabel gioVao, ArrayList arr) {
+        tenBan.setText(tenban);
+    }
+
+    // Mở bàn
+    public static void moBan(String tenBan) {
+
+    }
+
+    public static void setButtonOnClick(JButton button) {
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("oke");
+            };
+        });
     }
 }
